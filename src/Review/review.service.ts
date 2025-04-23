@@ -20,12 +20,13 @@ export class ReviewService {
     if (!user || !book) {
         throw new Error('User or Book not found');
     }
-    const newReview=this.reviewRepository.create({
-        ...input,
-        user,
-        book
-    });
-     return this.reviewRepository.save(newReview)
+    const review = new Review();
+  review.comment = input.comment;
+  review.rating = input.rating;
+  review.book =book;
+  review.user = user;  // Ensure the correct user is associated
+  
+  return await this.reviewRepository.save(review);
 
   }
 

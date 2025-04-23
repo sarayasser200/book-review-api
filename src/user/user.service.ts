@@ -23,4 +23,8 @@ export class UserService {
     const newUser = this.userRepository.create(input); // Create a new user entity
     return this.userRepository.save(newUser); // Save it to the database
   }
+
+  async findByEmail(email: string) {
+    return this.userRepository.findOne({ where: { email } });
+  }
 }

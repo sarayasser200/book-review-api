@@ -21,7 +21,13 @@ type Review {
 type User {
   id: Int!
   username: String!
+  email: String!
   displayName: String
+}
+
+type AuthPayload {
+  access_token: String!
+  user: User!
 }
 
 type Query {
@@ -35,11 +41,15 @@ type Query {
 type Mutation {
   createUser(input: CreateUserInput!): User!
   createBook(input: CreateBookInput!): Book!
-  createReview(input: CreateReviewInput!, userId: Float!): Review!
+  createReview(input: CreateReviewInput!): Review!
+  login(email: String!, password: String!): AuthPayload!
+  signup(input: CreateUserInput!): AuthPayload!
 }
 
 input CreateUserInput {
   username: String!
+  email: String!
+  password: String!
   displayName: String
 }
 

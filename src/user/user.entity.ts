@@ -14,6 +14,13 @@ export class User {
   @Column()
   username: string;
 
+  @Field()
+  @Column({ unique: true ,nullable:true})
+  email: string;
+
+  @Column({nullable:true}) // Not exposed in GraphQL
+  password: string;
+
   @Field({ nullable: true })
   @Column({ nullable: true })
   displayName?: string;
