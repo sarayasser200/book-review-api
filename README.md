@@ -10,7 +10,7 @@ A simple and secure GraphQL API for managing books, users, and reviews, built wi
 
 🔍 Query support for books, users, and reviews
 
-⚙️ Built using NestJS, TypeORM, PostgreSQL (or your chosen DB)
+⚙️ Built using NestJS, TypeORM, PostgreSQL 
 
 🛠 Tech Stack
 Backend: NestJS
