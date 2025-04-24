@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Book {
+  id: Int!
+  title: String!
+  author: String!
+  description: String!
+  rating: Float!
+}
+
+type Review {
+  id: Int!
+  comment: String!
+  rating: Float!
+  book: Book!
+  user: User!
+}
+
+type User {
+  id: Int!
+  username: String!
+  displayName: String
+}
+
+type Query {
+  getUsers: [User!]!
+  getUserById(id: Int!): User
+  getBooks: [Book!]!
+  getBookById(id: Float!): Book
+  getReviewsByBook(bookId: Float!): [Review!]!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+  createBook(input: CreateBookInput!): Book!
+  createReview(input: CreateReviewInput!, userId: Float!): Review!
+}
+
+input CreateUserInput {
+  username: String!
+  displayName: String
+}
+
+input CreateBookInput {
+  title: String!
+  author: String!
+  description: String!
+}
+
+input CreateReviewInput {
+  comment: String!
+  rating: Int!
+  bookId: Int!
+}
