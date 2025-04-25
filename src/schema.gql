@@ -2,12 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  id: Int!
+  name: String!
+  books: [Book!]
+}
+
 type Book {
   id: Int!
   title: String!
-  author: String!
   description: String!
   rating: Float!
+  author: Author
 }
 
 type Review {
@@ -33,9 +39,12 @@ type AuthPayload {
 type Query {
   getUsers: [User!]!
   getUserById(id: Int!): User
-  getBooks: [Book!]!
+  getBooks(page: Float! = 1, limit: Float! = 10): [Book!]!
   getBookById(id: Float!): Book
   getReviewsByBook(bookId: Float!): [Review!]!
+  getAllAuthors(page: Float! = 1, limit: Float! = 5): [Author!]!
+  findAuthorByName(name: String!): [Author!]!
+  getAuthorById(id: Float!): Author
 }
 
 type Mutation {
@@ -44,6 +53,7 @@ type Mutation {
   createReview(input: CreateReviewInput!): Review!
   login(email: String!, password: String!): AuthPayload!
   signup(input: CreateUserInput!): AuthPayload!
+  createAuthor(input: CreateAuthorInput!): Author!
 }
 
 input CreateUserInput {
@@ -55,7 +65,7 @@ input CreateUserInput {
 
 input CreateBookInput {
   title: String!
-  author: String!
+  authorId: Int!
   description: String!
 }
 
@@ -63,4 +73,8 @@ input CreateReviewInput {
   comment: String!
   rating: Int!
   bookId: Int!
+}
+
+input CreateAuthorInput {
+  name: String!
 }

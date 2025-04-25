@@ -11,6 +11,7 @@ import { BookModule } from './book/book.module';
 import { ReviewModule } from './Review/review.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
     ReviewModule,
     UserModule,
     AuthModule,
+    AuthorModule,
     
     
     

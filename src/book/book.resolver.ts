@@ -8,8 +8,11 @@ export class BookResolver {
   constructor(private bookService: BookService) {}
 
   @Query(() => [Book])
-  async getBooks(): Promise<Book[]> {
-    return this.bookService.getBooks(); // Get all books
+  async getBooks(
+    @Args('page', { type: () => Number, defaultValue: 1 }) page: number, 
+    @Args('limit', { type: () => Number, defaultValue: 10 }) limit: number
+  ): Promise<Book[]> {
+    return this.bookService.getBooks(page, limit); // Pass page and limit to the service
   }
 
   @Query(() => Book, { nullable: true })

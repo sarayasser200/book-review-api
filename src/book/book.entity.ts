@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Review } from 'src/Review/review.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Author } from 'src/author/author.entity';
 @ObjectType()
 @Entity()
 export class Book {
@@ -14,10 +15,6 @@ export class Book {
   title: string;
 
   @Field()
-  @Column()
-  author: string;
-
-  @Field()
   @Column('text')
   description: string;
 
@@ -27,5 +24,9 @@ export class Book {
 
   @OneToMany(() => Review, (review) => review.book)
   reviews: Review[];
-  
+
+  @Field(() => Author, { nullable: true }) 
+  @ManyToOne(() => Author, (author) => author.books, { nullable: true })
+  @JoinColumn({ name: 'authorId' })
+  author: Author;
 }
